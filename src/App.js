@@ -2,37 +2,38 @@ import React, { Component } from 'react';
 import './App.css';
 // Import data from given JSON file.
 import entities from './data/data.json';
-import BootstrapTable from 'react-bootstrap-table-next';
+import MUIDataTable from "mui-datatables";
 
 const personColumns = [{
-    dataField: 'person_name',
-    text: '',
-    align: 'left',
-
+    name: 'person_name',
+    label: 'Name', 
   }, {
-    dataField: 'person_title', 
-    text: '',
-    align: 'left',
+    name: 'person_title', 
+    label: 'Title'
   }, {
-    dataField: 'organization_name', 
-    text: '',
-    align: 'center'
+    name: 'organization_name', 
+    label: 'Organization'
   }, {
-    dataField: 'location', 
-    text: "",
-    align: 'right',
+    name: 'location', 
+    label: 'Location',
   }];
 
 const orgColumns = [{
-  dataField: 'organization_name', 
+  name: 'organization_name', 
   text: '',
   align: 'left',
 }, {
-  dataField: 'location', 
+  name: 'location', 
   text: '', 
   aligh: 'right',
 }
 ]
+
+const options = {
+  'pagination': false,
+  'print': false, 
+  'download':false, 
+};
 
 class App extends Component {
   
@@ -43,7 +44,8 @@ class App extends Component {
           <h2>DLP Coding Challenge</h2>
         </header>
         <div>
-          <BootstrapTable keyField='id' data={entities} columns={personColumns} search/>
+          <MUIDataTable title={"People"} data={entities} columns={personColumns} options={options}></MUIDataTable>
+          <MUIDataTable title={"Organizations"} data={entities} columns={orgColumns}></MUIDataTable>
         </div>
       </div>
     );
