@@ -21,11 +21,9 @@ const personColumns = [{
 const orgColumns = [{
   name: 'organization_name', 
   text: '',
-  align: 'left',
 }, {
   name: 'location', 
   text: '', 
-  aligh: 'right',
 }
 ]
 
