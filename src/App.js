@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // Import data from given JSON file.
 import entities from './data/data.json';
-import MUIDataTable from "mui-datatables";
+import {MUIDataTable} from "mdbreact"
 
 const personColumns = [{
   name: 'person_name',
@@ -20,12 +20,23 @@ const personColumns = [{
 
 const orgColumns = [{
   name: 'organization_name',
-  text: '',
+  label: 'Name',
+}, {
+  name: 'person_title',
+  label: 'Title',
+  options: {
+    display: false,
+  },
+}, {
+  name: 'organization_name',
+  label: 'Organization',
+  options: {
+    display: false,
+  }
 }, {
   name: 'location',
-  text: '',
-}
-]
+  label: 'Location',
+}];
 
 const options = {
   'pagination': false,
@@ -33,6 +44,7 @@ const options = {
   'download': false,
   'filter': false,
   'filterType': 'dropdown',
+  'selectableRows': false,
 };
 
 
