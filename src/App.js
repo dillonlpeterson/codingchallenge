@@ -4,8 +4,6 @@ import './App.css';
 import entities from './data/data.json';
 import Table from './Table.js';
 
-var jsonQuery = require('json-query')
-
 const columns = [{
   name: 'person_name',
   label: 'Name',
@@ -45,7 +43,7 @@ const optionsPeople = {
   print: false,
   download: false,
   filter: false,
-  search: true,
+  search: false,
   viewColumns: false,
   selectableRows: false,
 };
@@ -55,13 +53,14 @@ class App extends Component {
     filteredData: {},
   }
   
+  // Set initial state 
   componentWillMount() {
     this.setState({
       filteredData: entities
     });
   }
 
-  // Handles change to searchfield text by querying JSON file and updating filtered data accordingly 
+  // Handler method for navigation search bar 
   handleChange = (e) => {
     const result = entities.filter(d => d.person_name.toLowerCase().includes(e.target.value.toLowerCase()))
     this.setState ({
@@ -69,6 +68,7 @@ class App extends Component {
     });
   }
 
+  // Renders navigation bar with in-line search bar to filter entity data 
   renderNavigationBar = () => {
     return (
       <nav class="navbar navbar-light bg-light">
@@ -78,7 +78,6 @@ class App extends Component {
       </nav>
 
     )
-
   }
 
   render() {
@@ -93,6 +92,12 @@ class App extends Component {
             title={"People"}
             data={this.state.filteredData}
             columns={columns}
+            options={optionsPeople}
+          />
+          <Table 
+            title={"Organizations"} 
+            data={this.state.filteredOrgs}
+            columns={orgColumns}
             options={optionsPeople}
           />
         </div>
