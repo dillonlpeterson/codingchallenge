@@ -38,7 +38,7 @@ const orgColumns = [{
   name: "location",
 }];
 
-const optionsPeople = {
+const options = {
   pagination: false,
   print: false,
   download: false,
@@ -48,15 +48,19 @@ const optionsPeople = {
   selectableRows: false,
 };
 
+const orgs = entities
+
 class App extends Component {
   state = {
     filteredData: {},
+    filteredOrgs: {},
   }
   
   // Set initial state 
   componentWillMount() {
     this.setState({
-      filteredData: entities
+      filteredData: entities, 
+      filteredOrgs: orgs,
     });
   }
 
@@ -65,6 +69,7 @@ class App extends Component {
     const result = entities.filter(d => d.person_name.toLowerCase().includes(e.target.value.toLowerCase()))
     this.setState ({
       filteredData: result,
+      filteredOrgs: result,
     });
   }
 
@@ -92,13 +97,13 @@ class App extends Component {
             title={"People"}
             data={this.state.filteredData}
             columns={columns}
-            options={optionsPeople}
+            options={options}
           />
           <Table 
             title={"Organizations"} 
             data={this.state.filteredOrgs}
             columns={orgColumns}
-            options={optionsPeople}
+            options={options}
           />
         </div>
       </div>
