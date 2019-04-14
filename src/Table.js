@@ -30,9 +30,10 @@ class Table extends Component {
     render() {
         return (
             <MUIDataTable
-            data={this.state.filteredData}
+            data={this.props.data}
             columns={this.props.columns}
             options={this.props.options}
+            title={this.props.title}
           />
         )
     }

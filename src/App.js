@@ -4,6 +4,8 @@ import './App.css';
 import entities from './data/data.json';
 import Table from './Table.js';
 
+var jsonQuery = require('json-query')
+
 const columns = [{
   name: 'person_name',
   label: 'Name',
@@ -52,16 +54,19 @@ class App extends Component {
   state = {
     filteredData: {},
   }
-  componentDidMount() {
+  
+  componentWillMount() {
     this.setState({
       filteredData: entities
     });
   }
 
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      filteredData: newProps
-    })
+  // Handles change to searchfield text by querying JSON file and updating filtered data accordingly 
+  handleChange = (e) => {
+    const result = entities.filter(d => d.person_name.toLowerCase().includes(e.target.value.toLowerCase()))
+    this.setState ({
+      filteredData: result,
+    });
   }
 
   renderNavigationBar = () => {
@@ -85,7 +90,7 @@ class App extends Component {
         {this.renderNavigationBar()}
         <div>
           <Table
-            title="People"
+            title={"People"}
             data={this.state.filteredData}
             columns={columns}
             options={optionsPeople}
