@@ -1,6 +1,6 @@
 
 build:
-	npm run build 
+	yarn run build 
 	#docker build -t dillonlpeterson/codingchallenge:latest .
 	docker build -t registry.heroku.com/codingchallenge042019/web:latest .
 	#docker push dillonlpeterson/codingchallenge:latest 
