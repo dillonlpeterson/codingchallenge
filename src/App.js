@@ -62,7 +62,7 @@ class App extends Component {
   }
 
   onTableChange() {
-    console.log("On table change")
+    console.log("On able change")
   }
 
   render() {
