@@ -78,7 +78,7 @@ class App extends Component {
     return (
       <nav class="navbar navbar-light bg-light">
         <div class="container">
-          <input type="text" className="input" onChange={this.handleChange} placeholder="Search..." />
+          <input type="text" className="input" onChange={this.handleChange} placeholder="Search People..." />
         </div>
       </nav>
 
