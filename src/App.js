@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 // Import data from given JSON file.
 import entities from './data/data.json';
-import MUIDataTable from 'mui-datatables';
+import Table from './Table.js';
 
-const personColumns = [{
+const columns = [{
   name: 'person_name',
   label: 'Name',
 }, {
@@ -48,9 +48,6 @@ const optionsPeople = {
   selectableRows: false,
 };
 
-
-
-
 class App extends Component {
   state = {
     filteredData: {},
@@ -67,17 +64,30 @@ class App extends Component {
     })
   }
 
+  renderNavigationBar = () => {
+    return (
+      <nav class="navbar navbar-light bg-light">
+        <div class="container">
+          <input type="text" className="input" onChange={this.handleChange} placeholder="Search..." />
+        </div>
+      </nav>
+
+    )
+
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h2>Dillon Peterson // Coding Challenge</h2>
         </header>
+        {this.renderNavigationBar()}
         <div>
-          <MUIDataTable
+          <Table
             title="People"
             data={this.state.filteredData}
-            columns={personColumns}
+            columns={columns}
             options={optionsPeople}
           />
         </div>
