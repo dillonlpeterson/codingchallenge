@@ -2,49 +2,52 @@ import React, { Component } from 'react';
 import './App.css';
 // Import data from given JSON file.
 import entities from './data/data.json';
-import BootstrapTable from 'react-bootstrap-table-next';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
-const personColumns = [{
-    dataField: 'person_name',
-    text: '',
-    align: 'left',
-
-  }, {
-    dataField: 'person_title', 
-    text: '',
-    align: 'left',
-  }, {
-    dataField: 'organization_name', 
-    text: '',
-    align: 'center'
-  }, {
-    dataField: 'location', 
-    text: "",
-    align: 'right',
-  }];
-
-const orgColumns = [{
-  dataField: 'organization_name', 
-  text: '',
-  align: 'left',
+const columns = [{
+  Header: 'Name', 
+  accessor: 'person_name', 
 }, {
-  dataField: 'location', 
-  text: '', 
-  aligh: 'right',
-}
-]
+  Header: 'Title', 
+  accessor: 'person_title', 
+}, {
+  Header: 'Organization Name', 
+  accessor: 'organization_name',
+}, {
+  Header: 'Location',
+  accessor: 'location',
+}]
 
 class App extends Component {
-  
+  // Handles change 
+  handleChange = () => {
+    // Adjust results shown in tables below.
+  }
+  renderNavigationBar = () => {
+    return (
+      <nav class="navbar navbar-light bg-light">
+        <div class="container">
+          <input type="text" className="input" onChange={this.handleChange} placeholder="Search..." />
+        </div>
+      </nav>
+
+    )
+
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h2>DLP Coding Challenge</h2>
         </header>
-        <div>
-          <BootstrapTable keyField='id' data={entities} columns={personColumns} search/>
-        </div>
+        {this.renderNavigationBar()}
+          <ReactTable 
+            data={entities}
+            columns ={columns}
+            defaultPageSize = {3}
+            pageSizeOptions = {[3, 6]}
+          />
       </div>
     );
   }
