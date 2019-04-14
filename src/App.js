@@ -53,7 +53,7 @@ const optionsPeople = {
 
 class App extends Component {
   state = {
-    filteredData: entities,
+    filteredData: {},
   }
   componentDidMount() {
     this.setState({
@@ -61,8 +61,10 @@ class App extends Component {
     });
   }
 
-  onTableChange() {
-    console.log("On able change")
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      filteredData: newProps
+    })
   }
 
   render() {
