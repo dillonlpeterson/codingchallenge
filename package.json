@@ -35,7 +35,4 @@
   "devDependencies": {
     "install-peers": "^1.0.3"
   },
-  "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
-  }
 }
