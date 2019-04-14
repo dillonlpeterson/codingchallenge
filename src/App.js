@@ -2,48 +2,82 @@ import React, { Component } from 'react';
 import './App.css';
 // Import data from given JSON file.
 import entities from './data/data.json';
-import BootstrapTable from 'react-bootstrap-table-next';
+import MUIDataTable from 'mui-datatables';
 
 const personColumns = [{
-    dataField: 'person_name',
-    text: '',
-    align: 'left',
-
-  }, {
-    dataField: 'person_title', 
-    text: '',
-    align: 'left',
-  }, {
-    dataField: 'organization_name', 
-    text: '',
-    align: 'center'
-  }, {
-    dataField: 'location', 
-    text: "",
-    align: 'right',
-  }];
+  name: 'person_name',
+  label: 'Name',
+}, {
+  name: 'person_title',
+  label: 'Title',
+}, {
+  name: 'organization_name',
+  label: 'Organization',
+}, {
+  label: 'Location',
+  name: 'location',
+}];
 
 const orgColumns = [{
-  dataField: 'organization_name', 
-  text: '',
-  align: 'left',
+  name: 'organization_name',
+  label: 'Name',
 }, {
-  dataField: 'location', 
-  text: '', 
-  aligh: 'right',
-}
-]
+  name: 'person_title',
+  label: 'Title',
+  options: {
+    display: 'exclude',
+  }
+}, {
+  name: 'organization_name',
+  label: 'Organization',
+  options: {
+    display: 'exclude',
+  }
+}, {
+  label: 'Location',
+  name: "location",
+}];
+
+const optionsPeople = {
+  pagination: false,
+  print: false,
+  download: false,
+  filter: false,
+  search: true,
+  viewColumns: false,
+  selectableRows: false,
+};
+
+
+
 
 class App extends Component {
-  
+  state = {
+    filteredData: entities,
+  }
+  componentDidMount() {
+    this.setState({
+      filteredData: entities
+    });
+  }
+
+  onTableChange() {
+    console.log("On table change")
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h2>DLP Coding Challenge</h2>
+          <h2>Dillon Peterson // Coding Challenge</h2>
         </header>
         <div>
-          <BootstrapTable keyField='id' data={entities} columns={personColumns} search/>
+          <MUIDataTable
+            title="People"
+            data={this.state.filteredData}
+            columns={personColumns}
+            options={optionsPeople}
+          />
         </div>
       </div>
     );
