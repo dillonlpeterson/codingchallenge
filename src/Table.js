@@ -5,27 +5,6 @@ class Table extends Component {
     constructor(props) {
         super(props)
     }
-    state = {
-        filteredData: {}
-    }
-
-    setFilteredData = e => {
-        this.setState({
-            filteredData: e.target.value
-        })
-    }
-
-    componentDidMount() {
-        this.setState({
-            filteredData: this.props.filteredData
-        });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            filteredData: nextProps.filteredData
-        });
-    }
 
     render() {
         return (
